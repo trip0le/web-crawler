@@ -11,8 +11,12 @@ object SummarizerBridge {
     scalaFuture.toJava.toCompletableFuture
   }
 
-  def getHistory: java.util.List[String] = {
+  def getHistory: java.util.List[SummarizeHistoryReader.History] = {
     import scala.jdk.CollectionConverters._
     SummarizeHistoryReader.fetchHistory().asJava
+  }
+
+  def deleteHistory(historyId: Int): Unit = {
+    DeleteHistory.deleteSummaryRequest(historyId)
   }
 }
